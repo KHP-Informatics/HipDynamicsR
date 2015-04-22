@@ -22,7 +22,7 @@ library("RMySQL")
 # +++++++++++++++++++++++++++++++ Settings +++++++++++++++++++++++++++++++++++
 
 # mySQL db admin
-host <- "localhost"
+db_host <- "localhost"
 db_name <- "hipsci_final"
 db_usern <- "hipsci"
 db_passwd <- "data"

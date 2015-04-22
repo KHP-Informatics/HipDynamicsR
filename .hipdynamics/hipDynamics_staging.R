@@ -22,7 +22,7 @@ if(!exists("aPrompt"))
 # make sure the mysql.server is running
 # establishing connection and extracting tables
 drv <- dbDriver("MySQL")
-con <- dbConnect(drv, db_name, user='hipsci', pass='data')
+con <- dbConnect(drv, db_name, user='hipsci', pass='data', host=db_host)
 
 statement <- paste('Select', 
                    img_no_idx, ",", 
