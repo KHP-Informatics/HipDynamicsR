@@ -7,19 +7,16 @@
 #  |___|___|__||   __||_____/|___  |__|__|___._|__|__|__||__||____|_____|    +
 #              |__|          |_____|                                         +
 #                                                                            +
-# TITLE:   HipDynamics - An analysis to deduce cell population dynamics    	 +
+# TITLE:   HipDynamics - An analysis to deduce cell population dynamics      +
 # VERSION: 1.1                                                               +
-# AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)             			     +
+# AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)            	     +
 #                                                                            +
 # ACKNOWLEDGEMENTS: Amos Folarin (amosfolarin@gmail.com)                     +
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++                                    
-
-
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++                                  
 library("gplots")
 library("ggplot2")
 library("ggdendro")
 library("reshape")
-library("gridExtra")
 library("RMySQL")
 
 # +++++++++++++++++++++++++++++++ Settings +++++++++++++++++++++++++++++++++++
@@ -32,10 +29,11 @@ db_passwd <- "data"
 table_per_img <- "ExpFeeder_1to16_Per_Image"
 table_per_obj <- "ExpFeeder_1to16_Per_Object"
 
-# PlateResult path and filename
-path_PR <- "/Users/Kerz/Documents/projects/HIPSCI/Plate_Results/" 
-path_out <- "~/Desktop/HipSci_Graphs/Final/"
-path_code <- "/Users/Kerz/Documents/projects/HIPSCI/code/"
+# PlateResult path and filename - plate results must be supplied and the path 
+#             adjusted accordingly. 
+path_PR <- "~/Documents/projects/HIPSCI/Plate_Results/" 
+path_out <- paste(getwd(), "/output/", sep="")
+path_code <- paste(getwd(), "/.hipdynamics/", sep="")
 
 # FN concentrations
 fn_concentrations <- c(0,1,5,25)
