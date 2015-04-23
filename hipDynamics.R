@@ -23,15 +23,15 @@ library("RMySQL")
 
 # mySQL db admin
 db_host <- "localhost"
-db_name <- "hipsci_final"
+db_name <- "example_data"
 db_usern <- "hipsci"
 db_passwd <- "data"
-table_per_img <- "ExpFeeder_1to16_Per_Image"
-table_per_obj <- "ExpFeeder_1to16_Per_Object"
+table_per_img <- "Example_Img"
+table_per_obj <- "Example_Obj"
 
 # PlateResult path and filename - plate results must be supplied and the path 
 #             adjusted accordingly. 
-path_PR <- "~/Documents/projects/HIPSCI/Plate_Results/" 
+path_PR <- paste(getwd(), "/example/", sep="")
 path_out <- paste(getwd(), "/output/", sep="")
 path_code <- paste(getwd(), "/.hipdynamics/", sep="")
 
