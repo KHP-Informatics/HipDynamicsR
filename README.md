@@ -26,9 +26,20 @@ In order to run *HipDynamics* you need to enter the R-shell type the following c
 source("hipDynamics.R")
 ```
 
+
 #### Running the example
 
 In order for you to run the example, you need to download the `example_data.sql` mysql database file from [Google Drive][4] and import it to your mysql sever. *HipDynamics* will try to find the database on your localhost by default. Shoul you want to run your server non-locally you can configure the `host` variable in the `hipDynamics.R` file.
+
+
+#### Dependencies 
+R libraries:
+
+1. gplots
+2. ggplot2
+3. ggdendro
+4. reshape
+5. RMySQL
 
 [1]: http://www.hipsci.org
 [2]: http://www.cellprofiler.org
