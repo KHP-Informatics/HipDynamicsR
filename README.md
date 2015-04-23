@@ -15,7 +15,7 @@
 
 1. The database login-in- and end-point details need to be specified. 
 2. The `plate_result.txt` files directory path should be assigned to `path_PR`.
-3. Optional settings allows specifying different analysis-methods and data exports.
+3. Optional settings allow specifying different analysis-methods and data exports.
 
 
 #### Go-time
