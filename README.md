@@ -41,7 +41,15 @@ R libraries:
 4. reshape
 5. RMySQL
 
+
+
+#### Acknowledgments
+1. [Amos Folarin][5]
+2. HIPSCI Group of the [Wattlab][6]
+
 [1]: http://www.hipsci.org
 [2]: http://www.cellprofiler.org
 [3]: http://www.perkinelmer.co.uk/pages/020/cellularimaging/products/operetta.xhtml
 [4]: https://drive.google.com/file/d/0BxLMQl6nTe_3UFIxSWNiZ3dBck0/view?usp=sharing
+[5]: https://github.com/afolarin
+[6]: http://www.wattlab.org/index.html
