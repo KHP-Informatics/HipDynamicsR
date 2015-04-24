@@ -34,6 +34,9 @@ table_per_obj <- "ExpFeeder_1to16_Per_Object"
 path_PR <- paste(getwd(), "/example/", sep="")
 path_out <- paste(getwd(), "/output/", sep="")
 path_code <- paste(getwd(), "/.hipdynamics/", sep="")
+path_PR <- paste("~/Documents/projects/HIPSCI", "/plate_results/", sep="")
+path_out <- paste("~/Documents/projects/HIPSCI/HipDynamics", "/output/", sep="")
+path_code <- paste("~/Documents/projects/HIPSCI/HipDynamics", "/hipdynamics/", sep="")
 
 # FN concentrations
 fn_concentrations <- c(0,1,5,25)
@@ -46,9 +49,6 @@ threshold <- c(50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,
 # method for inferential analysis - only one must be selected
 infer_from_raw_bins <- TRUE
 infer_from_normalisation <- FALSE
-
-# combine batches to get a one pdf per line
-combined_batch <- FALSE
 
 # export options
 export_raw_data <- FALSE
