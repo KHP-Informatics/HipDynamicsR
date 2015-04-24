@@ -25,19 +25,9 @@ if(infer_from_raw_bins == infer_from_normalisation){
   stopifnot(infer_from_raw_bins != infer_from_normalisation)
 }
 
-# +++++++++++++++++++++++++++++++ SCRIPT ++++++++++++++++++++++++++++++++++++++
+# +++++++++++++++++++++++++++++++ FUNCION ++++++++++++++++++++++++++++++++++++++
 
-# instantiating new final output table
-final_output_table <- data.frame()
-
-for(experiment in experiments){
-  
-  print(paste(aPrompt, "For experiment:",experiment)) # PRINT
-  exp_img_full <- GetExperimentImg(experiment)
-  exp_obj_full <- GetExperimentObj(exp_img_full)
-  
-  # instantiating new experiment table
-  experiment_output_table <- data.frame()
+HipDynamicsAnalysis <- function(){
   
   for(idx_no in 1:fields_list){
     col <- colnames(exp_obj_full)
@@ -46,15 +36,25 @@ for(experiment in experiments){
     index_var <- index_vars[[1]][3]
     
     #dev.off() writes it to the files
-    pdf(file=paste(path_out,index_var, "_", experiment,"_Thresh",threshold_raw,"_plots_&_heatmaps.pdf",
-                   sep=""), height=9, width=7, onefile=TRUE, family='Helvetica', paper='letter', 
-        pointsize=12)
-    
-    lines <- unique(exp_img_full[,line_idx])
-    # as plate result do not contain all information for all rows NA are omitted
-    lines <- lines[!is.na(lines)]
+    if(combined_batch == FALSE){
+      pdf(file=paste(path_out,index_var, "_", experiment,"_Thresh",threshold_raw,"_plots_&_heatmaps.pdf",
+                     sep=""), height=9, width=7, onefile=TRUE, family='Helvetica', paper='letter', 
+          pointsize=12)
+      
+      lines <- unique(exp_img_full[,line_idx])
+      # as plate result do not contain all information for all rows NA are omitted
+      lines <- lines[!is.na(lines)]
+    } else {
+      lines <- cell_lines 
+    }
     
     for(line in lines){
+      
+      if(combined_batch == TRUE){
+        pdf(file=paste(path_out,index_var, "_", line,"_Thresh",threshold_raw,"_plots_&_heatmaps.pdf",
+                       sep=""), height=9, width=7, onefile=TRUE, family='Helvetica', paper='letter', 
+            pointsize=12)
+      }
       
       print(paste(aPrompt, "For line:",line)) # PRINT
       line_img_idx <- which(exp_img_full[,line_idx] == line)
@@ -210,15 +210,49 @@ for(experiment in experiments){
           final_output_table <- rbind(final_output_table, output_table)
         }
       }
-    
+      
       print(aPrompt)
+      if(combined_batch == TRUE){
+        dev.off()
+        #saveCSV(line, experiment_output_table, path_out) 
+      }
     }
     print(aPrompt)
-    dev.off()
+    
+    if(combined_batch == FALSE){
+      dev.off()
+      saveCSV(experiment, experiment_output_table, path_out) 
+    }
+  }
+}
+
+
+# +++++++++++++++++++++++++++++++ SCRIPT ++++++++++++++++++++++++++++++++++++++
+
+# instantiating new final output table
+final_output_table <- data.frame()
+
+if(combined_batch == FALSE){
+  for(experiment in experiments){
+  
+    print(paste(aPrompt, "For experiment:",experiment)) # PRINT
+    exp_img_full <- GetExperimentImg(experiment)
+    exp_obj_full <- GetExperimentObj(exp_img_full)
+    #exp_img_full <- per.img
+    #exp_obj_full <- per.obj
+    #experiment <- "Combined"
+    
+    # instantiating new experiment table
+    experiment_output_table <- data.frame()
+    HipDynamicsAnalysis()
     
   }
-  saveCSV(experiment, experiment_output_table, path_out)
+} else {
+  exp_img_full <- per.img
+  exp_obj_full <- per.obj
+  experiment <- "Combined"
+  # instantiating new experiment table
+  experiment_output_table <- data.frame()
+  HipDynamicsAnalysis()
 }
 saveCSV("FINAL", final_output_table, path_out)
-
-
