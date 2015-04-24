@@ -18,6 +18,13 @@ if(!exists("aPrompt"))
   print("ANALYSER: ERROR (Make sure you load hipDynamics.R first).")
   quit(save="no")
 }
+
+# only one analysis method can be selcted: tested for
+if(infer_from_raw_bins == infer_from_normalisation){
+  print(paste(aPrompt, "Both analysis methods were selected. Please only select one."))
+  stopifnot(infer_from_raw_bins != infer_from_normalisation)
+}
+
 # +++++++++++++++++++++++++++++++ SCRIPT ++++++++++++++++++++++++++++++++++++++
 
 # instantiating new final output table
@@ -120,13 +127,15 @@ for(experiment in experiments){
           coefs <- coef(fit)
           y_intercept <- coefs[1]
           gradient <- coefs[2]
+          field <- index_var
+          exp <- experiment
           
           boxplot(log(exp_histo[[d]]+1), 
                   main=paste(experiment, line, fn_con[d], "Gradient:", round(gradient, 5),
                              "Intercept", round(y_intercept, 5)))
           abline(fit ,col=2)
           
-          output_table <- data.frame(experiment, line, fn_con[d], gradient, y_intercept, index_var)
+          output_table <- data.frame(exp, line, fn_con[d], gradient, y_intercept, field)
           
           if(length(fn_output_table)==0){
             fn_output_table <- output_table
@@ -178,8 +187,8 @@ for(experiment in experiments){
         line <- c(line, line, line)
         field <- c(index_var, index_var, index_var)
         gradient <- c(output1[[1]], output5[[1]], output25[[1]])
-        intercept <- c(output1[[2]], output5[[2]], output25[[2]])
-        output_table <- data.frame(exp, line, fn_con, gradient, intercept, field)
+        y_intercept <- c(output1[[2]], output5[[2]], output25[[2]])
+        output_table <- data.frame(exp, line, fn_con, gradient, y_intercept, field)
         
         # OUTPUT
         print(paste(aPrompt, "Normalised Inferential Analysis"))

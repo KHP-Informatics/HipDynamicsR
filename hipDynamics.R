@@ -35,6 +35,7 @@ path_PR <- paste(getwd(), "/example/", sep="")
 path_out <- paste(getwd(), "/output/", sep="")
 path_code <- paste(getwd(), "/.hipdynamics/", sep="")
 
+
 # FN concentrations
 fn_concentrations <- c(0,1,5,25)
 # thresholds
@@ -43,7 +44,7 @@ threshold <- c(50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,
 
 # ----------------------------------- OPTIONS
 
-# method for inferential analysis
+# method for inferential analysis - only must be selected
 infer_from_raw_bins <- TRUE
 infer_from_normalisation <- FALSE
 

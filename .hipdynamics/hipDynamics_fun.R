@@ -284,7 +284,7 @@ GetImgsOfFN <- function(exp_img,
     hours_test <- length(img_idx)
     for(h_sug in hour_suggest){
       if(hours_test%%h_sug == 0){
-        img_hours <<- h_sug
+        assign("img_hours", h_sug, envir = .GlobalEnv)
         break
       }
     }
@@ -521,6 +521,7 @@ GetExpHistoMean <- function(fn_con_idx,
 
 		histo_hour.mean <- c()
 		histo_hour.stde <- c()
+    
 
 		for(hour in 1:img_hours){
 
