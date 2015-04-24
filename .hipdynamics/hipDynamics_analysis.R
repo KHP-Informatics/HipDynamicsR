@@ -55,11 +55,10 @@ for(experiment in experiments){
       exp_obj <- GetExperimentObj(exp_img)
       
       # get well index for [FN] = 1, 5, 25 (0)
-      #   since [FN] 0 and 25 are in fact both 25 they are put together
       fn_exp_idx <- list()
-      fn_exp_idx[[1]] <- GetImgsOfFN(exp_img, fn_concentrations[2])
-      fn_exp_idx[[2]] <- GetImgsOfFN(exp_img, fn_concentrations[3])
-      fn_exp_idx[[3]] <- GetImgsOfFN(exp_img, fn_concentrations[4])
+      fn_exp_idx[[1]] <- GetImgsOfFN(exp_img, fn_concentrations[2], hour_suggest=img_hours_suggest)
+      fn_exp_idx[[2]] <- GetImgsOfFN(exp_img, fn_concentrations[3], hour_suggest=img_hours_suggest)
+      fn_exp_idx[[3]] <- GetImgsOfFN(exp_img, fn_concentrations[4], hour_suggest=img_hours_suggest)
       
       exp_histo <- GetExpHistoMean(fn_exp_idx, threshold, obj_index_list[idx_no], get_raw=FALSE)
       print(paste(aPrompt, 

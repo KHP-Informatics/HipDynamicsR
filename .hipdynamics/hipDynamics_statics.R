@@ -70,7 +70,7 @@ experiments <- c()
 cell_lines <- c()
 # number of hours of live-imaging
 img_hours <- 24
-img_hours_suggest=c(24,23,20)
+img_hours_suggest=c(24,23,22,21,20)
 img_hours_lowest <- 20
 
 # Prompt
