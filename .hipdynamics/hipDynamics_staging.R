@@ -7,7 +7,7 @@
 #              |__|          |_____|                                         +
 #                                                                            +
 # TITLE:   HipDynamics - An analysis to deduce cell population dynamics    	 +
-# VERSION: 1.0                                                               +
+# VERSION: 1.2                                                               +
 # AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)             			     +
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

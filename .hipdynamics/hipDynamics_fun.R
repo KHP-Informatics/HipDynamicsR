@@ -7,7 +7,7 @@
 #              |__|          |_____|                                         +
 #                                                                            +
 # TITLE:   HipDynamics - An analysis to deduce cell population dynamics    	 +
-# VERSION: 1.1                                                               +
+# VERSION: 1.2                                                               +
 # AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)             			     +
 #                                                                            +
 # ACKNOWLEDGEMENTS: Amos Folarin (amosfolarin@gmail.com)                     +
@@ -855,7 +855,7 @@ summary <- function(){
   print("+              |__|          |_____|                                       +")
   print("+                                                                          +")
   print("+ TITLE:   HipDynamics - An analysis to deduce cell population dynamics    +")
-  print("+ VERSION: 1.1                                                             +")
+  print("+ VERSION: 1.2                                                             +")
   print("+ AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)                     +")
   print("+                                                                          +")
   print("+ ACKNOWLEDGEMENTS: Amos Folarin (amosfolarin@gmail.com)                   +")

@@ -7,7 +7,7 @@ print("+  |___|___|__||   __||_____/|___  |__|__|___._|__|__|__||__||____|_____|
 print("+              |__|          |_____|                                       +")
 print("+                                                                          +")
 print("+ TITLE:   HipDynamics - An analysis to deduce cell population dynamics    +")
-print("+ VERSION: 1.1                                                             +")
+print("+ VERSION: 1.2                                                             +")
 print("+ AUTHOR:  Maximilian Kerz (kerz.maximilian@gmail.com)                     +")
 print("+                                                                          +")
 print("+ ACKNOWLEDGEMENTS: Amos Folarin (amosfolarin@gmail.com)                   +")
