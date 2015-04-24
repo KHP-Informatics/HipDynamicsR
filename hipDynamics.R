@@ -33,10 +33,7 @@ table_per_obj <- "ExpFeeder_1to16_Per_Object"
 #             adjusted accordingly. 
 path_PR <- paste(getwd(), "/example/", sep="")
 path_out <- paste(getwd(), "/output/", sep="")
-path_code <- paste(getwd(), "/hipdynamics/", sep="")
-path_PR <- paste("~/Documents/projects/HIPSCI", "/plate_results/", sep="")
-path_out <- paste("~/Documents/projects/HIPSCI/HipDynamics", "/output/", sep="")
-path_code <- paste("~/Documents/projects/HIPSCI/HipDynamics", "/hipdynamics/", sep="")
+path_code <- paste(getwd(), "/.hipdynamics/", sep="")
 
 # FN concentrations
 fn_concentrations <- c(0,1,5,25)
