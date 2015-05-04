@@ -871,7 +871,6 @@ summary <- function(){
   print("OPTION Settings:")
   print(paste("Raw-bin Inferential Analysis:   ",infer_from_raw_bins))
   print(paste("Normalised Inferential Analysis:",infer_from_normalisation))
-  print(paste("Combined Batches:               ", combined_batch))
   print(paste("Export raw data:                ",export_raw_data))
   print(paste("Export normalised data:         ",export_normalised_data))
   print("")
