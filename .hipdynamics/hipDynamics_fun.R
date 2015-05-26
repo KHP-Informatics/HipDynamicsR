@@ -92,17 +92,25 @@ ImportExperiment <- function(plate_results_txt){
   # based on the 'date' in filename of plate_result.txt 
   # 	corresponding experments are identified.
   sub_name <- strsplit(plate_results_txt, "_")
+  
   disjoint_date <- strsplit(sub_name[[1]][1], "-")
   date <- paste(disjoint_date[[1]][1], disjoint_date[[1]][2], 
                 disjoint_date[[1]][3], sep="")
+  
+  exp_id_idx <- which(regexpr("Exp", sub_name[[1]])>0)
+  exp_id <- sub_name[[1]][exp_id_idx]
   
   index_list <- which(regexpr(date, per.img[,file_idx])>0)
   index_first <- index_list[1]
   index_last <- index_list[length(index_list)]
   
   if(!is.na(index_first)){
+    if(nchar(exp_id)<4) { 
+      exp_id = paste(exp_id, sub_name[[1]][exp_id_idx+1], sep="")
+    }
     # add experiment to global reference
     experiments[length(experiments)+1] <<- date
+    experiments_id[length(experiments_id)+1] <<- exp_id
     print(paste(aPrompt,"FOUND experiment for", plate_results_txt,"- adding FN ..."))
     
     well_and_fn <- ImportPlateResults(plate_results_txt)
@@ -390,7 +398,7 @@ HeatExpHisto <- function(histo_input,
 		ylab <- "Cell Area (in %)"
 	}
 	if(overwrite_main == FALSE){
-	  main <- paste("Exp",experiment, "-", cell_line,
+	  main <- paste(experiment, "-", cell_line,
 	                ": Heatmap of cell area at",sep="")
   	if(all_FNs == TRUE){
   		main <- paste(main, "all [FN]'s")

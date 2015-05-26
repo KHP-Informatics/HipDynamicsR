@@ -32,7 +32,9 @@ final_output_table <- data.frame()
 
 for(experiment in experiments){
   
-  print(paste(aPrompt, "For experiment:",experiment)) # PRINT
+  experiment_id <- experiments_id[which(regexpr(experiment, experiments)>0)]
+  
+  print(paste(aPrompt, "For experiment:",experiment_id)) # PRINT
   exp_img_full <- GetExperimentImg(experiment)
   exp_obj_full <- GetExperimentObj(exp_img_full)
 
@@ -88,7 +90,7 @@ for(experiment in experiments){
       }
       
       if(export_raw_data==TRUE){
-        save(exp_histo, file=paste(path_out,experiment,line,"-exo_histo.RData", sep=""))
+        save(exp_histo, file=paste(path_out,experiment_id,line,"-exo_histo.RData", sep=""))
       }
       
       # heatmap of all [FN]'s
@@ -105,11 +107,11 @@ for(experiment in experiments){
       }
       rownames(heat_mtrx) <- heat_mtrx_rows
       HeatExpHisto(heat_mtrx, fn_concentrations[i+1],
-                   experiment, line, TRUE, TRUE)
+                   experiment_id, line, TRUE, TRUE)
       
       # save heat_mtrx dataframe
       if(export_normalised_data==TRUE){
-        save(heat_mtrx, file=paste("~/Desktop/",experiment,line,"-heat_mtrx.RData", sep=""))
+        save(heat_mtrx, file=paste("~/Desktop/",experiment_id,line,"-heat_mtrx.RData", sep=""))
       }
       
       fn_con <- fn_concentrations[2:4]
@@ -133,11 +135,11 @@ for(experiment in experiments){
           exp <- experiment
           
           boxplot(log(exp_histo[[d]]+1), 
-                  main=paste(experiment, line, fn_con[d], "Gradient:", round(gradient, 5),
+                  main=paste(experiment_id, line, fn_con[d], "Gradient:", round(gradient, 5),
                              "Intercept", round(y_intercept, 5)))
           abline(fit ,col=2)
           
-          output_table <- data.frame(exp, line, fn_con[d], gradient, y_intercept, field)
+          output_table <- data.frame(experiment_id, line, fn_con[d], gradient, y_intercept, field)
           
           if(length(fn_output_table)==0){
             fn_output_table <- output_table
@@ -177,15 +179,15 @@ for(experiment in experiments){
         DynamicCutoff(fn1_mtrx, 20, print_cutoffs=FALSE, display_graphs=FALSE)
         
         par(mfrow=c(3,1))
-        output1  <- ComputeTrend(fn1_mtrx, remove_debris=TRUE, exp=experiment, line=line, 
+        output1  <- ComputeTrend(fn1_mtrx, remove_debris=TRUE, exp=experiment_id, line=line, 
                                  field=index_var, fn_conc_input=1)
-        output5  <- ComputeTrend(fn5_mtrx, remove_debris=TRUE, exp=experiment, line=line, 
+        output5  <- ComputeTrend(fn5_mtrx, remove_debris=TRUE, exp=experiment_id, line=line, 
                                  field=index_var, fn_conc_input=5)
-        output25 <- ComputeTrend(fn25_mtrx, remove_debris=TRUE, exp=experiment, line=line, 
+        output25 <- ComputeTrend(fn25_mtrx, remove_debris=TRUE, exp=experiment_id, line=line, 
                                  field=index_var, fn_conc_input=25)
         print(aPrompt)
         
-        exp <- c(experiment, experiment, experiment)
+        exp <- c(experiment_id, experiment_id, experiment_id)
         line <- c(line, line, line)
         field <- c(index_var, index_var, index_var)
         gradient <- c(output1[[1]], output5[[1]], output25[[1]])
@@ -217,7 +219,7 @@ for(experiment in experiments){
     }
     print(aPrompt)
     dev.off()
-    saveCSV(line, experiment_output_table, path_out) 
+    saveCSV(experiment_id, experiment_output_table, path_out) 
   }
 }
 saveCSV("FINAL", final_output_table, path_out)
