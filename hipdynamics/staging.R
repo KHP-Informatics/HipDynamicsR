@@ -65,6 +65,9 @@ lookUp <- db.lookUp
 if(length(which(db.lookUp$Experiment == "-")) > 0){
     lookUp <- db.lookUp[-which(db.lookUp$Experiment == "-"),]   
 }
+if(length(which(db.lookUp$Line == "-")) > 0){
+    lookUp <- db.lookUp[-which(db.lookUp$Line == "-"),]   
+}
 # remove duplicate hours
 for(i in 2:length(lookUp[,1])){
     dup.len <- length(lookUp[,1])
